@@ -4,4 +4,5 @@ use App\Core\Route;
 
 return [
     new Route('/', 'main', 'index'),
+    new Route('/registration', 'registration', 'actionRegister')
 ];

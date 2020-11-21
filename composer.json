@@ -2,10 +2,15 @@
   "autoload": {
     "psr-4": {
       "App\\Core\\": "app/core/",
-      "App\\Project\\Controllers\\": "app/project/controllers/"
+      "App\\Project\\Controllers\\": "app/project/controllers/",
+      "App\\Project\\Models\\": "app/project/models/",
+      "App\\Project\\Utils\\": "app/project/utils/",
+      "App\\Core\\Db\\": "app/core/db/"
     }
   },
   "require": {
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "ext-dom": "*",
+    "ext-iconv": "*"
   }
 }

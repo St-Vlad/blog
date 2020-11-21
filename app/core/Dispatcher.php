@@ -10,7 +10,7 @@ class Dispatcher
         $fullName = "App\\Project\\Controllers\\$className";
 
         try {
-            $controller = new $fullName;
+            $controller = new $fullName();
 
             if (method_exists($controller, $track->getAction())) {
                 $result = $controller->{$track->getAction()}($track->getParams());

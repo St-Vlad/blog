@@ -9,7 +9,6 @@ class View
     }
     private function renderLayout(Page $page, $content) {
         $layoutPath = $_SERVER['DOCUMENT_ROOT'] . "/app/project/layouts/{$page->getLayout()}.php";
-
         if (file_exists($layoutPath)) {
             ob_start();
             $title = $page->getTitle();

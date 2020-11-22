@@ -1,26 +1,28 @@
-<?php
-var_dump($errors);
-?>
-<form action="/registration" method="post" novalidate>
+<?php if($errors): ?>
     <ul>
-        <li>
-            <label for="username">Ім'я користувача:</label>
-            <input type="text" id="username" name="username">
-        </li>
-        <li>
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email">
-        </li>
-        <li>
-            <label for="password">Пароль:</label>
-            <input type="password" id="password" name="password">
-        </li>
-        <li>
-            <label for="repeat-password">Повторіть пароль:</label>
-            <input type="password" id="repeat-password" name="repeat-password">
-        </li>
-        <li>
-            <input type="submit" id="submit" name="submit" value="зарегатися">
-        </li>
+        <?php foreach ($errors as $error):?>
+        <li><?= $error?></li>
+        <?php endforeach;?>
     </ul>
+<?php endif;?>
+
+<form action="/registration" method="post">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Ім'я користувача</label>
+        <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введіть ім'я">
+        <small id="emailHelp" class="form-text text-muted">Це ім'я буде відображатися на ваших статтях</small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Eлектронна пошта</label>
+        <input type="text" name="email" class="form-control" placeholder="Електронна пошта">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Пароль</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Повторіть пароль</label>
+        <input type="password" name="repeat-password" class="form-control" id="exampleInputPassword1" placeholder="Повторіть пароль">
+    </div>
+    <input type="submit" name="submit" class="btn btn-primary" value="Зареєструватися"/>
 </form>

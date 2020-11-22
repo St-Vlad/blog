@@ -2,7 +2,6 @@
 
 namespace App\Project\Controllers;
 use App\Project\Models\RegistrationFormValidator;
-use App\Project\Models\UserDAO;
 use App\Project\Models\UserService;
 use App\Project\Utils\FormCleaner;
 

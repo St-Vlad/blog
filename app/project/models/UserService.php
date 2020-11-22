@@ -18,7 +18,7 @@ class UserService
                 $form['email'],
                 $form['password']);
         $this->userDAO->create($user);
-        $_SESSION['user_id'] = [$user->getId()];
+        $_SESSION['user_id'] = $user->getId();
         header("Location: /");
     }
 

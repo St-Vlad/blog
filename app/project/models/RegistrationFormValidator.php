@@ -20,11 +20,11 @@ class RegistrationFormValidator extends FormModel
     {
         $this->checkNotEmpty($this->data);
         $this->checkEmailMask($this->data['email']);
+        $this->checkEmailExistence($this->data['email']);
         $this->checkPasswordLength($this->data['password']);
         $this->checkPasswordSameness($this->data['password'],
                                      $this->data['repeat-password']);
-        $this->checkEmailExistence($this->data['email']);
-        var_dump($this->data);
+
         if (!empty($this->errors))
         {
             return false;
@@ -43,10 +43,16 @@ class RegistrationFormValidator extends FormModel
 
     private function checkEmailExistence($email)
     {
-        $existingEmail = (new userDAO)->getExistingEmail($email);
-        if ($email === $existingEmail['email'])
+        if (!empty($email))
         {
-            $this->addError("emailExist", "Такий Email вже існує");
+            $existingEmail = (new userDAO)->getExistingEmail($email);
+            if (!empty($existingEmail))
+            {
+                if ($email === $existingEmail['email'])
+                {
+                    $this->addError("emailExist", "Така електронна пошта вже зареєстрована");
+                }
+            }
         }
     }
 }

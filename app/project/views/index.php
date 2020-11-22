@@ -1,22 +1,32 @@
-    <div class="post_box">
-        <h2><a href="#">Free Blog Design Templates</a></h2>
-        <div class="news_meta"><span>28th July 2048 | User | ID</span></div>
-        <p align="justify">Design Blog is a <a href="http://www.templatemo.com" target="_parent">free CSS layout</a> by <a href="http://www.templatemo.com" target="_parent">templatemo.com</a> website. Feel free to adapt or edit or cutomize this template for any kind of content management system. Validate <a href="http://validator.w3.org/check?uri=referer" rel="nofollow">XHTML</a> &amp; <a href="http://jigsaw.w3.org/css-validator/check/referer" rel="nofollow">CSS</a>. Praesent at libero diam. Vivamus venenatis eros lorem, in euismod tortor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur dictum risus ac eros lacinia sit amet egestas turpis luctus.  <a href="#" class="continue">Continue ...</a></p>
-        <div class="cleaner"></div>
-    </div>
+<article class="post summary hentry" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
 
-    <div class="post_box">
+    <header class="entry-header">
 
-        <h2><a href="#">Web Design Trends</a></h2>
-        <div class="news_meta"><span>28th July 2048 | User | ID</span></div>
-        <p align="justify">Donec magna risus, mollis eget ullamcorper a, fringilla ut ligula. Fusce eu lectus non tortor dictum semper et eget eros. Integer enim eros, bibendum sed rhoncus et, congue vel odio. Sed quis augue turpis, quis vehicula nibh. Quisque hendrerit accumsan tellus, non lobortis lacus tincidunt vel. Pellentesque odio urna, convallis non ultrices quis, cursus id lectus. <a href="#" class="continue">Continue ...</a></p>
-        <div class="cleaner"></div>
-    </div>
+        <h2 class="entry-title" itemprop="headline"><a href="article.html" title="Article Title" rel="bookmark" itemprop="url">Article Title</a></h2>
 
-    <div class="post_box pb_last">
+        <div class="entry-meta">
 
-        <h2><a href="#">Best Collection of Freebies</a></h2>
-        <div class="news_meta"><span>28th July 2048 | User | ID</span></div>
-        <p align="justify">Quisque in diam a justo condimentum molestie. Vivamus a velit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur quis velit quis tortor tincidunt aliquet. Vivamus leo velit, convallis id, ultrices sit amet, tempor a, libero. Donec diam metus, semper eu elementum at, volutpat vel risus. Curabitur condimentum porttitor libero nec hendrerit. Nullam venenatis laoreet nibh eget iaculis. Ut vel nulla vitae magna aliquam luctus. <a href="#" class="continue">Continue ...</a></p>
-        <div class="cleaner"></div>
-    </div>
+										<span class="post-date">
+											<i class="fa fa-clock-o fa-fw"></i> <span class="updated">12th February 2015</span>
+										</span> <!-- .post-date -->
+
+            <span class="post-author">
+											<i class="fa fa-user fa-fw"></i> Written by <span class="vcard">AVTOR</span>
+										</span> <!-- .post-author -->
+        </div> <!-- .entry-meta -->
+
+    </header> <!-- .entry-header -->
+    <div class="entry-summary" itemprop="articleBody">
+
+        <p>Lorem ipsum dolor sit amet, orci a faucibus, ante curabitur augue ornare nulla facilisi bibendum, tortor felis quam rutrum velit, pretium posuere placerat. Vitae ut nulla eget. Lacus sociis, eget dolor metus nam nunc leo. Tempor eget donec officia. Luctus nullam purus urna iaculis, integer dui risus, ultricies lacinia aliquet.</p>
+        <a class="more button" href="article.html">Read More</a>
+
+    </div> <!-- .entry-summary -->
+
+</article> <!-- .post.summary -->
+<div class="pagination">
+
+    <a class="prev button" href="blog.html"><i class="fa fa-chevron-left"></i> Previous Page</a>
+    <a class="next button" href="blog.html">Next Page <i class="fa fa-chevron-right"></i></a>
+
+</div> <!-- .pagination -->

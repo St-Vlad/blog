@@ -3,6 +3,8 @@
 namespace App\Project\Models;
 
 use App\Project\Utils\FormCleaner;
+use App\Project\Utils\Hasher;
+use App\Project\Utils\IdGenerator;
 
 class UserService
 {
@@ -14,21 +16,28 @@ class UserService
 
     public function registerUser($form)
     {
-        $user = new User($form['username'],
-                $form['email'],
-                $form['password']);
+        $user = new User(IdGenerator::generateId(),
+                         $form['username'],
+                         $form['email'],
+                         Hasher::getHash($form['password']));
         $this->userDAO->create($user);
-        $_SESSION['user_id'] = $user->getId();
-        header("Location: /");
+        $this->setUserInSession($user->getId(), $user->getUsername());
     }
 
-    public function loginUser( )
+    public function loginUser($form)
     {
-
+        $userData = $this->userDAO->getRegisteredUser($form['email']);
+        $this->setUserInSession($userData['user_id'], $userData['username']);
     }
 
     public function logoutUser()
     {
+        session_destroy();
+    }
 
+    private function setUserInSession($id, $username)
+    {
+        $_SESSION['user_id'] = $id;
+        $_SESSION['username'] = $username;
     }
 }

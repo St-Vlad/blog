@@ -4,7 +4,7 @@ namespace App\Project\Models;
 
 class RegistrationFormValidator extends FormModel
 {
-    use ValidationUserRules;
+    use ValidationUserMethods;
 
     private $data;
 

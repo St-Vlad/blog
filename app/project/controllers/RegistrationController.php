@@ -7,13 +7,11 @@ use App\Project\Utils\FormCleaner;
 
 class RegistrationController extends BaseController
 {
-    private $registerForm;
     private $userService;
     private $errors;
 
     public function __construct()
     {
-        $this->registerForm = new RegistrationFormValidator();
         $this->userService = new UserService();
     }
 
@@ -21,14 +19,17 @@ class RegistrationController extends BaseController
     {
         if (isset($_POST['submit']))
         {
+
+            $registerForm = new RegistrationFormValidator();
             $form = FormCleaner::purify($_POST);
 
-            $this->registerForm->load($form);
-            if (!$this->registerForm->isValid()) {
-                $this->errors = $this->registerForm->getErrors();
+            $registerForm->load($form);
+            if (!$registerForm->isValid()) {
+                $this->errors = $registerForm->getErrors();
             }
             else{
                 $this->userService->registerUser($form);
+                header("Location: /");
             }
         }
         return $this->render('user/registration', ['errors' => $this->errors]);

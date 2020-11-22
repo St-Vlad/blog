@@ -2,7 +2,7 @@
 
 namespace App\Project\Models;
 
-trait ValidationUserRules
+trait ValidationUserMethods
 {
     private function checkNotEmpty(array $data)
     {

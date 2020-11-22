@@ -12,12 +12,12 @@ class User
     private $email;
     private $password;
 
-    public function __construct($username, $email, $password)
+    public function __construct($id, $username, $email, $password)
     {
-        $this->id = IdGenerator::generateId();
+        $this->id = $id;
         $this->username = $username;
         $this->email = $email;
-        $this->password = Hasher::getHash($password);
+        $this->password = $password;
     }
 
     public function getId()

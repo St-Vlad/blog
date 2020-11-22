@@ -1,5 +1,4 @@
 <article class="post summary hentry" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
-
     <header class="entry-header">
 
         <h2 class="entry-title" itemprop="headline"><a href="article.html" title="Article Title" rel="bookmark" itemprop="url">Article Title</a></h2>

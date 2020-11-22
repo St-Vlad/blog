@@ -33,7 +33,11 @@
                 <nav id="main-menu" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
                     <ul class="horizontal-navigation">
                         <li class="menu-home" itemprop="url"><a href="/" title="Головна сторінка" itemprop="name">Головна</a></li>
-                        <li class="menu-about" itemprop="url"><a href="/registration" title="Увійти" itemprop="name">Увійти</a></li>
+                        <?php if(isset($_SESSION['user_id'])):?>
+                            <li class="menu" itemprop="url"><a href="/logout" title="Вийти" itemprop="name">Вийти</a></li>
+                        <?php else:?>
+                            <li class="menu" itemprop="url"><a href="/login" title="Увійти" itemprop="name">Увійти</a></li>
+                        <?php endif;?>
                     </ul>
                 </nav> <!-- #main-menu -->
 
@@ -44,9 +48,7 @@
     <div id="page-title">
         <div class="container">
             <div class="row">
-
                 <h1 class="entry-title" itemprop="headline">Blog</h1>
-
             </div> <!-- .row -->
         </div> <!-- .container -->
     </div> <!-- #page-title -->

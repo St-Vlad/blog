@@ -65,7 +65,7 @@ class ArticlesDAO extends DBConnection
     {
         $stmt = $this->pdo->prepare("SELECT `article_id`, `articles`.`user_id`, 
                                     `users`.`username`, `article_name`, 
-                                    `short_description`, `article_text`, `status` 
+                                    `short_description`, `article_text`, `status`, `creation_date` 
                                     FROM `articles` 
                                     JOIN users ON `articles`.`user_id` = `users`.`user_id` 
                                     WHERE `article_id` = :article_id

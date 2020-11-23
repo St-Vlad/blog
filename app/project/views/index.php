@@ -13,7 +13,7 @@
     <div class="entry-summary" itemprop="articleBody">
 
         <p><?= $article['short_description'];?></p>
-        <a class="more button" href="<?= $article['article_id'];?>">Read More</a>
+        <a class="more button" href="/article/<?= $article['article_id'];?>">Детальніше</a>
 
     </div> <!-- .entry-summary -->
     <hr>

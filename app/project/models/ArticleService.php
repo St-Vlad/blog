@@ -29,7 +29,7 @@ class ArticleService
         return [$articles, $pageCount];
     }
 
-    public function getUserArticle($articleId)
+    public function getArticle($articleId)
     {
         return $this->articlesDAO->getArticleById($articleId);
     }

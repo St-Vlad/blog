@@ -28,17 +28,6 @@ class CabinetController extends BaseController
         }
     }
 
-    public function viewArticle($params)
-    {
-        if (isset($_SESSION['user_id'])) {
-            $article = $this->service->getUserArticle($params['id']);
-            return $this->render('article', ['article' => $article]);
-        }
-        else{
-            header("Location: /");
-        }
-    }
-
     public function deletePost($params)
     {
         if (isset($_SESSION['user_id'])) {

@@ -15,11 +15,14 @@
 									<div class="entry-meta">
 
 										<span class="post-date">
-											<i class="fa fa-clock-o fa-fw"></i> <span class="updated">12th February 2015</span>
+											<i class="fa fa-clock-o fa-fw"></i>
+                                            <span class="created">
+                                                <?= $article['creation_date'];?>
+                                            </span>
 										</span> <!-- .post-date -->
 
 										<span class="post-author">
-											<i class="fa fa-user fa-fw"></i> Written by <span class="vcard">
+											<i class="fa fa-user fa-fw"></i> Написана автором <span class="vcard">
                                                 <?= $article['username'];?>
 										</span> <!-- .post-author -->
 									</div> <!-- .entry-meta -->

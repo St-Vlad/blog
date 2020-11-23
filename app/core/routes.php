@@ -12,7 +12,7 @@ return [
 
     new Route('/cabinet', 'cabinet', 'actionIndex'),
     new Route('/cabinet/page/:page', 'cabinet', 'actionIndex'),
-    new Route('/cabinet/article/:id', 'cabinet', 'viewArticle'),
+    new Route('/article/:id', 'main', 'actionArticleView'),
 
     new Route('/cabinet/deletePost/:id', 'cabinet', 'deletePost'),
     new Route('/cabinet/editPost/:id', 'cabinet', 'editPost'),

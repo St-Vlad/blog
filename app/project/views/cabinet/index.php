@@ -30,7 +30,7 @@
     </header> <!-- .entry-header -->
     <div class="entry-summary" itemprop="articleBody">
         <p><?= $article['short_description'];?></p>
-        <a class="more button" href="/cabinet/article/<?= $article['article_id'];?>">Read More</a>
+        <a class="more button" href="/article/<?= $article['article_id'];?>">Детальніше</a>
     <hr>
     </div> <!-- .entry-summary -->
 </article> <!-- .post.summary -->

@@ -14,9 +14,9 @@
     <link media="all" type="text/css" href="<?php echo "/app/project/src/css/font-awesome.min.css";?>" rel="stylesheet">
     <link media="all" type="text/css" href="<?php echo "/app/project/src/css/core.css";?>" rel="stylesheet">
     <link media="all" type="text/css" href="<?php echo "/app/project/src/css/skins/orange.css";?>" rel="stylesheet">
-    <link media="all" type="text/css" href="<?php echo "/app/project/src/css/custom.css";?>" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link media="all" type="text/css" href="<?php echo "/app/project/src/css/custom.css";?>" rel="stylesheet">
 </head>
 <body class="blog" itemscope itemtype="http://schema.org/Blog">
 
@@ -26,15 +26,19 @@
         <div class="container">
             <div class="row">
 
-                <div id="branding">
-                    <a class="logo" href="index.html">Canvas</a>
-                </div> <!-- #branding -->
-
                 <nav id="main-menu" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
                     <ul class="horizontal-navigation">
                         <li class="menu-home" itemprop="url"><a href="/" title="Головна сторінка" itemprop="name">Головна</a></li>
                         <?php if(isset($_SESSION['user_id'])):?>
-                            <li class="menu" itemprop="url"><a href="/logout" title="Вийти" itemprop="name">Вийти</a></li>
+                            <li class="menu" itemprop="url">
+                                <a href="/cabinet" title="Особостий кабінет" itemprop="name"><?= $_SESSION['username'];?></a>
+                            </li>
+                            <li class="menu" itemprop="url">
+                                <a href="/cabinet/create" title="Створити статтю" itemprop="name">Створити статтю</a>
+                            </li>
+                            <li class="menu" itemprop="url">
+                                <a href="/logout" title="Вийти" itemprop="name">Вийти</a>
+                            </li>
                         <?php else:?>
                             <li class="menu" itemprop="url"><a href="/login" title="Увійти" itemprop="name">Увійти</a></li>
                         <?php endif;?>
@@ -56,7 +60,6 @@
 </div> <!-- #masthead -->
 
 <main id="content" role="main">
-
     <div class="section">
         <div class="container">
             <div class="row">

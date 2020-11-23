@@ -25,6 +25,7 @@ abstract class DBConnection
     protected static function createPdoConnection() {
         $dsn = "mysql:host=" .self::$config['host_name']. "; dbname=" .self::$config['db_name'];
         return new PDO($dsn, self::$config['db_root'], self::$config['db_pass'],
-            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"]);
     }
 }

@@ -26,3 +26,6 @@
     </div>
     <input type="submit" name="submit" class="btn btn-primary" value="Зареєструватися"/>
 </form>
+<div style="margin-top: 5%">
+    <span>Вже є аккаунт? <a href="/login">Увійти</a></span>
+</div>

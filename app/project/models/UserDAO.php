@@ -13,16 +13,6 @@ class UserDAO extends DBConnection
         $this->pdo = $this->getDb();
     }
 
-    public function getAll()
-    {
-        // TODO: Implement getAll() method.
-    }
-
-    public function getById($id)
-    {
-        // TODO: Implement getById() method.
-    }
-
     public function create(User $user)
     {
         $stmt = $this->pdo->prepare("INSERT INTO `users`(`user_id`, `username`, 
@@ -34,16 +24,6 @@ class UserDAO extends DBConnection
                 ':email' => $user->getEmail(),
                 ':password_hash' => $user->getPassword()]);
         return true;
-    }
-
-    public function update($id)
-    {
-        // TODO: Implement update() method.
-    }
-
-    public function delete($id)
-    {
-        // TODO: Implement delete() method.
     }
 
     public function getRegisteredUser($email)

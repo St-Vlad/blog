@@ -13,15 +13,23 @@ class ArticlesDAO extends DBConnection
         $this->pdo = $this->getDb();
     }
 
-    public function getArticlesCount($userId)
+    public function getUserArticlesCount($userId)
     {
-        $sql = "SELECT COUNT(*) FROM `articles`";
-        if (!is_null($userId))
-        {
-            $sql .= "WHERE `articles`.`user_id` = :user_id";
-        }
+        $sql = "SELECT COUNT(*) 
+                FROM `articles` WHERE `articles`.`user_id` = :user_id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([':user_id' => $userId]);
+        $count = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $count['COUNT(*)'];
+    }
+
+    public function getArticlesCount()
+    {
+        $sql = "SELECT COUNT(*) 
+                FROM `articles`
+                WHERE `status` = 1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
         $count = $stmt->fetch(PDO::FETCH_ASSOC);
         return $count['COUNT(*)'];
     }
@@ -30,6 +38,7 @@ class ArticlesDAO extends DBConnection
     {
         $stmt = $this->pdo->prepare("SELECT `article_id`, `article_title`, `article_description`, `creation_date`
                                     FROM `articles` 
+                                    WHERE `status` = 1 
                                     ORDER BY `creation_date` DESC
                                     LIMIT :pageNumber, :pageLimit");
         $stmt->bindParam(':pageNumber', $pageNumber, PDO::PARAM_INT);

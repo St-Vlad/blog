@@ -6,7 +6,7 @@ return [
     new Route('/', 'main', 'actionIndex'),
     new Route('/page/:page', 'main', 'actionIndex'),
 
-    new Route('/registration', 'registration', 'actionRegister'),
+    new Route('/register', 'registration', 'actionRegister'),
     new Route('/login', 'login', 'actionLogin'),
     new Route('/logout', 'login', 'actionLogout'),
 

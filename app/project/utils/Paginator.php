@@ -37,9 +37,13 @@ class Paginator
 
     public function getPageCount()
     {
-        //if $userId is not null, this will return a total count of User articles
-        //in the other hand, this will return articles from all users
-        $totalCount = $this->articlesDAO->getArticlesCount($this->userId);
+        $totalCount = 0;
+        if (!is_null($this->userId)){
+            $totalCount = $this->articlesDAO->getUserArticlesCount($this->userId);
+        }
+        else{
+            $totalCount = $this->articlesDAO->getArticlesCount();
+        }
         return ceil($totalCount / $this->pageLimit);
     }
 

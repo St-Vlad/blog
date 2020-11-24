@@ -35,9 +35,10 @@
     </div> <!-- .entry-summary -->
 </article> <!-- .post.summary -->
 <?php endforeach;?>
-<div class="pagination">
-
-    <a class="prev button" href="blog.html"><i class="fa fa-chevron-left"></i> Previous Page</a>
-    <a class="next button" href="blog.html">Next Page <i class="fa fa-chevron-right"></i></a>
-
-</div> <!-- .pagination -->
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <?php for ($i = 1; $i <= $pageCount; $i++):?>
+            <li class="page-item"><a class="page-link" href="/page/<?= $i;?>"><?= $i;?></a></li>
+        <?php endfor;?>
+    </ul>
+</nav>

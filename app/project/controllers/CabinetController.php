@@ -25,7 +25,7 @@ class CabinetController extends BaseController
                                                         'pageCount'=>$pageCount]);
         }
         else{
-            header("Location: /");
+            header("Location: /login");
         }
     }
 
@@ -51,7 +51,7 @@ class CabinetController extends BaseController
             return $this->render('cabinet/createArticle', ['errors' => $this->errors]);
         }
         else{
-            header("Location: /");
+            header("Location: /login");
         }
     }
 
@@ -63,7 +63,7 @@ class CabinetController extends BaseController
             }
         }
         else{
-            header("Location: /");
+            header("Location: /login");
         }
     }
 
@@ -75,7 +75,7 @@ class CabinetController extends BaseController
             return $this->render('cabinet/editPost', ['article' => $article]);
         }
         else{
-            header("Location: /");
+            header("Location: /login");
         }
     }
 
@@ -99,7 +99,7 @@ class CabinetController extends BaseController
             $this->render('cabinet/editPost', ['errors' => $this->errors]);
         }
         else{
-            header("Location: /");
+            header("Location: /login");
         }
     }
 }

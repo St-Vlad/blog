@@ -39,6 +39,7 @@ class LoginForm extends FormModel
     {
         $this->check_csrf($this->data);
         $this->checkNotEmpty($this->data);
+        $this->checkUsernameLength($this->data['username']);
         $this->checkEmailMask($this->data['email']);
         $this->checkPasswordLength($this->data['password']);
         $this->checkIsUserRegistered($this->data['email'], $this->data['password']);

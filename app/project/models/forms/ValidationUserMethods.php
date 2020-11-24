@@ -4,6 +4,16 @@ namespace App\Project\Models\Forms;
 
 trait ValidationUserMethods
 {
+    private function checkUsernameLength($username)
+    {
+        $length = iconv_strlen($username);
+        if ($length > 50)
+        {
+            $this->addError("usernameLength",
+                "Занадто довге ім'я користувача");
+        }
+    }
+
     private function checkNotEmpty(array $data)
     {
         foreach ($data as $key => $field)

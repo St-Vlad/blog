@@ -38,6 +38,7 @@ class RegistrationForm extends FormModel
     public function isValid()
     {
         $this->checkNotEmpty($this->data);
+        $this->checkUsernameLength($this->data['username']);
         $this->checkEmailMask($this->data['email']);
         $this->checkEmailExistence($this->data['email']);
         $this->checkPasswordLength($this->data['password']);
@@ -59,6 +60,7 @@ class RegistrationForm extends FormModel
                 "Паролі повинні співпадати");
         }
     }
+
 
     private function checkEmailExistence($email)
     {

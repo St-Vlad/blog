@@ -8,6 +8,9 @@
 
 <form action="/registration" method="post">
     <div class="form-group">
+        <input type="hidden" name="CSRFtoken" class="form-control" id="secret" value="<?php echo $_SESSION['CSRFtoken'];?>">
+    </div>
+    <div class="form-group">
         <label for="exampleInputEmail1">Ім'я користувача</label>
         <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введіть ім'я">
         <small id="emailHelp" class="form-text text-muted">Це ім'я буде відображатися на ваших статтях</small>

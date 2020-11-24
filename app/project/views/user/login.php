@@ -8,6 +8,9 @@
 
 <form action="/login" method="post">
     <div class="form-group">
+        <input type="hidden" name="CSRFtoken" class="form-control" id="secret" value="<?php echo $_SESSION['CSRFtoken'];?>">
+    </div>
+    <div class="form-group">
         <label for="exampleInputEmail1">Eлектронна пошта</label>
         <input type="text" name="email" id="exampleInputEmail1" class="form-control" placeholder="Електронна пошта">
     </div>

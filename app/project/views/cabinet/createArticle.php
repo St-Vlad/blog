@@ -7,6 +7,9 @@
 <?php endif;?>
 <form action="/cabinet/createArticle" method="post">
     <div class="form-group">
+        <input type="hidden" name="CSRFtoken" class="form-control" id="secret" value="<?php echo $_SESSION['CSRFtoken'];?>">
+    </div>
+    <div class="form-group">
         <label for="article_title">Назва статті</label>
         <input type="text" name="article_title" class="form-control" id="article_title">
     </div>

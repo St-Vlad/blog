@@ -10,12 +10,10 @@ class CabinetController extends BaseController
 {
     private $service;
     private $errors;
-    private $articleForm;
 
     public function __construct()
     {
         $this->service = new ArticleService();
-        $this->articleForm = new ArticleFormValidator();
     }
 
     public function actionIndex($params)
@@ -34,13 +32,14 @@ class CabinetController extends BaseController
     {
         if (isset($_SESSION['user_id']))
         {
+            $articleForm = new ArticleFormValidator();
             if (isset($_POST['submit']))
             {
                 $form = FormCleaner::purify($_POST);
-                $this->articleForm->load($form);
-                if (!$this->articleForm->isValid())
+                $articleForm->load($form);
+                if (!$articleForm->isValid())
                 {
-                    $this->errors = $this->articleForm->getErrors();
+                    $this->errors = $articleForm->getErrors();
                 }
                 else{
                     $this->service->createArticle($form);
@@ -80,13 +79,14 @@ class CabinetController extends BaseController
     public function actionUpdateArticle()
     {
         if (isset($_SESSION['user_id'])) {
+            $articleForm = new ArticleFormValidator();
             if (isset($_POST['submit']))
             {
                 $form = FormCleaner::purify($_POST);
 
-                $this->articleForm->load($form);
-                if (!$this->articleForm->isValid()) {
-                    $this->errors = $this->articleForm->getErrors();
+                $articleForm->load($form);
+                if (!$articleForm->isValid()) {
+                    $this->errors = $articleForm->getErrors();
                 }
                 else{
                     $this->service->updateArticle($form);

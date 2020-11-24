@@ -4,14 +4,27 @@
 namespace App\Project\Models;
 
 
+use App\Project\Utils\CSRFGenerator;
+
 class LoginFormValidator extends FormModel
 {
     use ValidationUserMethods;
+    use CSRFChecker;
 
     private $data;
+    private $token;
+
+    public function __construct()
+    {
+        if (!isset($_SESSION['CSRFtoken'])) {
+            $this->token = new CSRFGenerator();
+            $_SESSION['CSRFtoken'] = $this->token->getCSRFtoken();
+        }
+    }
 
     public function load($data)
     {
+        var_dump($data);
         if (isset($data))
         {
             $this->data = $data;
@@ -20,6 +33,7 @@ class LoginFormValidator extends FormModel
 
     public function isValid()
     {
+        $this->check_csrf($this->data);
         $this->checkNotEmpty($this->data);
         $this->checkEmailMask($this->data['email']);
         $this->checkPasswordLength($this->data['password']);

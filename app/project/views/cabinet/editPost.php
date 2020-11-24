@@ -7,6 +7,9 @@
 <?php endif;?>
 <form action="/cabinet/updateArticle" method="post">
     <div class="form-group">
+        <input type="hidden" name="CSRFtoken" class="form-control" id="secret" value="<?php echo $_SESSION['CSRFtoken'];?>">
+    </div>
+    <div class="form-group">
         <input type="hidden" name="article_id" class="form-control" value="<?= $article['article_id'];?>">
     </div>
     <div class="form-group">

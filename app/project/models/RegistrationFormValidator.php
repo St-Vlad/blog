@@ -2,11 +2,22 @@
 
 namespace App\Project\Models;
 
+use App\Project\Utils\CSRFGenerator;
+
 class RegistrationFormValidator extends FormModel
 {
     use ValidationUserMethods;
 
     private $data;
+    private $token;
+
+    public function __construct()
+    {
+        if (!isset($_SESSION['CSRFtoken'])) {
+            $this->token = new CSRFGenerator();
+            $_SESSION['CSRFtoken'] = $this->token->getCSRFtoken();
+        }
+    }
 
     public function load($data)
     {

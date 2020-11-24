@@ -17,9 +17,9 @@ class RegistrationController extends BaseController
 
     public function actionRegister()
     {
+        $registerForm = new RegistrationFormValidator();
         if (isset($_POST['submit']))
         {
-            $registerForm = new RegistrationFormValidator();
             $form = FormCleaner::purify($_POST);
 
             $registerForm->load($form);

@@ -4,9 +4,22 @@
 namespace App\Project\Models;
 
 
+use App\Project\Utils\CSRFGenerator;
+
 class ArticleFormValidator extends FormModel
 {
+    use CSRFChecker;
+
     private $data;
+    private $token;
+
+    public function __construct()
+    {
+        if (!isset($_SESSION['CSRFtoken'])) {
+            $this->token = new CSRFGenerator();
+            $_SESSION['CSRFtoken'] = $this->token->getCSRFtoken();
+        }
+    }
 
     public function load($data)
     {
@@ -22,7 +35,7 @@ class ArticleFormValidator extends FormModel
         $this->checkTitleLength($this->data);
         $this->checkDescriptionLength($this->data);
         $this->checkTextLength($this->data);
-
+        $this->check_csrf($this->data);
         if (!empty($this->errors))
         {
             return false;

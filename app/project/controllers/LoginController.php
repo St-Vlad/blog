@@ -8,24 +8,23 @@ use App\Project\Utils\FormCleaner;
 
 class LoginController extends BaseController
 {
-    private $loginForm;
     private $userService;
     private $errors;
 
     public function __construct()
     {
-        $this->loginForm = new LoginFormValidator();
         $this->userService = new UserService();
     }
 
     public function actionLogin()
     {
+        $loginForm = new LoginFormValidator();
         if (isset($_POST['submit']))
         {
             $form = FormCleaner::purify($_POST);
-            $this->loginForm->load($form);
-            if (!$this->loginForm->isValid()) {
-                $this->errors = $this->loginForm->getErrors();
+            $loginForm->load($form);
+            if (!$loginForm->isValid()) {
+                $this->errors = $loginForm->getErrors();
             }
             else{
                 $this->userService->loginUser($form);

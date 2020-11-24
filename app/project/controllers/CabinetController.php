@@ -77,24 +77,23 @@ class CabinetController extends BaseController
         }
     }
 
-    public function updatePost()
+    public function actionUpdateArticle()
     {
         if (isset($_SESSION['user_id'])) {
             if (isset($_POST['submit']))
             {
-                $articleForm = new ArticleFormValidator();
                 $form = FormCleaner::purify($_POST);
 
-                $articleForm->load($form);
-                if (!$articleForm->isValid()) {
-                    $this->errors = $articleForm->getErrors();
+                $this->articleForm->load($form);
+                if (!$this->articleForm->isValid()) {
+                    $this->errors = $this->articleForm->getErrors();
                 }
                 else{
                     $this->service->updateArticle($form);
                     header("Location: /cabinet");
                 }
-                $this->render('cabinet/editPost', ['errors' => $this->errors]);
             }
+            $this->render('cabinet/editPost', ['errors' => $this->errors]);
         }
         else{
             header("Location: /");

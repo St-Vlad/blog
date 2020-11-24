@@ -7,12 +7,15 @@
 <?php endif;?>
 <form action="/cabinet/updateArticle" method="post">
     <div class="form-group">
-        <label for="article_name">Назва статті</label>
-        <textarea class="form-control" name="article_name" id="article_name" rows="4" style="resize: none"><?= $article['article_title'];?></textarea>
+        <input type="hidden" name="article_id" class="form-control" value="<?= $article['article_id'];?>">
     </div>
     <div class="form-group">
-        <label for="short_description">Короткий опис</label>
-        <input type="text" name="short_description" class="form-control" id="short_description" value="<?= $article['article_description'];?>">
+        <label for="article_title">Назва статті</label>
+        <input type="text" name="article_title" class="form-control" id="article_title" value="<?= $article['article_title'];?>">
+    </div>
+    <div class="form-group">
+        <label for="article_description">Короткий опис</label>
+        <textarea class="form-control" name="article_description" id="article_description" rows="4" style="resize: none"><?= $article['article_description'];?></textarea>
     </div>
     <div class="form-group">
         <label for="article_text">Текст статті</label>

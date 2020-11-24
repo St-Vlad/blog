@@ -60,7 +60,7 @@ class ArticleService
     public function updateArticle(array $form)
     {
         $form = $this->checkStatus($form);
-        return $this->articlesDAO->updateArticle($form);
+        $this->articlesDAO->updateArticle($form);
     }
 
     private function checkStatus($form)

@@ -97,11 +97,11 @@ class ArticlesDAO extends DBConnection
         $stmt = $this->pdo->prepare("UPDATE `articles` SET `article_title`= :article_title,
                                     `article_description`= :article_description, `article_text`= :article_text,
                                     `status`= :status WHERE `article_id` = :article_id");
-        $stmt->bindParam(':article_title', $form['article_name'], PDO::PARAM_STR);
-        $stmt->bindParam(':article_description', $form['article_description'], PDO::PARAM_STR);
-        $stmt->bindParam(':article_text', $form['article_text'], PDO::PARAM_STR);
-        $stmt->bindParam(':status', $form['publish_status'], PDO::PARAM_INT);
-        $stmt->bindParam(':article_id', $form['article_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':article_title', $form['article_title'], PDO::PARAM_STR);
+        $stmt->bindValue(':article_description', $form['article_description'], PDO::PARAM_STR);
+        $stmt->bindValue(':article_text', $form['article_text'], PDO::PARAM_STR);
+        $stmt->bindValue(':status', $form['publish_status'], PDO::PARAM_INT);
+        $stmt->bindValue(':article_id', $form['article_id'], PDO::PARAM_INT);
         $stmt->execute();
         return true;
     }

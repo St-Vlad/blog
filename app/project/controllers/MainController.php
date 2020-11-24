@@ -16,6 +16,7 @@ class MainController extends BaseController
 
     public function actionIndex($params)
     {
+        $this->title = "Головна";
         [$articles, $pageCount] = $this->service->getAllArticles($params);
         return $this->render('index', ['articles' => $articles,
                                             'pageCount'=>$pageCount]);
@@ -23,6 +24,7 @@ class MainController extends BaseController
 
     public function actionArticleView($params)
     {
+        $this->title = "Перегляд статті";
         $article = $this->service->getArticle($params['id']);
         return $this->render('article', ['article' => $article]);
     }

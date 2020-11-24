@@ -18,6 +18,7 @@ class CabinetController extends BaseController
 
     public function actionIndex($params)
     {
+        $this->title = 'Ваші статті';
         if (isset($_SESSION['user_id'])) {
             [$articles, $pageCount] = $this->service->getAllUserArticles($params, $_SESSION['user_id']);
             return $this->render('cabinet/index', ['articles' => $articles,
@@ -30,6 +31,7 @@ class CabinetController extends BaseController
 
     public function actionCreateArticle()
     {
+        $this->title = 'Створення статті';
         if (isset($_SESSION['user_id']))
         {
             $articleForm = new ArticleForm();
@@ -67,6 +69,7 @@ class CabinetController extends BaseController
 
     public function actionEditArticle($params)
     {
+        $this->title = 'Редагування статті';
         if (isset($_SESSION['user_id'])) {
             $article = $this->service->editPost($params['id']);
             return $this->render('cabinet/editPost', ['article' => $article]);

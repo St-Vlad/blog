@@ -17,6 +17,7 @@ class RegistrationController extends BaseController
 
     public function actionRegister()
     {
+        $this->title = 'Реєстрація';
         $registerForm = new RegistrationForm();
         if (isset($_POST['submit']))
         {

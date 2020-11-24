@@ -18,6 +18,7 @@ class LoginController extends BaseController
 
     public function actionLogin()
     {
+        $this->title = "Сторінка логіну";
         $loginForm = new LoginForm();
         if (isset($_POST['submit']))
         {

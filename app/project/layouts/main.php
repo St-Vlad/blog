@@ -8,7 +8,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
 
-    <title>Blog - Canvas - A Free Website Template by Donny Burnside</title>
+    <title><?php echo $title?></title>
 
     <link media="all" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link media="all" type="text/css" href="<?php echo "/app/project/src/css/font-awesome.min.css";?>" rel="stylesheet">

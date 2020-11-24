@@ -28,7 +28,7 @@ class ArticlesDAO extends DBConnection
 
     public function getAllArticles($pageNumber, $pageLimit)
     {
-        $stmt = $this->pdo->prepare("SELECT `article_id`, `article_name`, `short_description`, `creation_date`
+        $stmt = $this->pdo->prepare("SELECT `article_id`, `article_title`, `article_description`, `creation_date`
                                     FROM `articles` 
                                     ORDER BY `creation_date` DESC
                                     LIMIT :pageNumber, :pageLimit");
@@ -40,8 +40,8 @@ class ArticlesDAO extends DBConnection
 
     public function getAllUserArticles($pageNumber, $pageLimit, $userId)
     {
-        $stmt = $this->pdo->prepare("SELECT `article_id`, `user_id`, `article_name`, 
-                                  `short_description`, `status`, `creation_date` 
+        $stmt = $this->pdo->prepare("SELECT `article_id`, `user_id`, `article_title`, 
+                                  `article_description`, `status`, `creation_date` 
                                   FROM `articles` 
                                   WHERE `articles`.`user_id` = :user_id
                                   ORDER BY `creation_date` DESC                                 
@@ -64,8 +64,8 @@ class ArticlesDAO extends DBConnection
     public function getArticleById($id)
     {
         $stmt = $this->pdo->prepare("SELECT `article_id`, `articles`.`user_id`, 
-                                    `users`.`username`, `article_name`, 
-                                    `short_description`, `article_text`, `status`, `creation_date` 
+                                    `users`.`username`, `article_title`, 
+                                    `article_description`, `article_text`, `status`, `creation_date` 
                                     FROM `articles` 
                                     JOIN users ON `articles`.`user_id` = `users`.`user_id` 
                                     WHERE `article_id` = :article_id
@@ -75,13 +75,30 @@ class ArticlesDAO extends DBConnection
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function createArticle(Article $article)
+    {
+        $stmt = $this->pdo->prepare("INSERT INTO `articles`(`article_id`, `user_id`, `article_title`, 
+                                    `article_description`, `article_text`, `status`, 
+                                    `creation_date`) 
+                                    VALUES (:article_id, :user_id, :article_title, :article_description,
+                                    :article_text, :status, CURRENT_TIMESTAMP)");
+        $stmt->bindValue(':article_id', $article->getArticleId(), PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $article->getUserId(), PDO::PARAM_INT);
+        $stmt->bindValue(':article_title', $article->getArticleTitle(), PDO::PARAM_STR);
+        $stmt->bindValue(':article_description', $article->getArticleDescription(), PDO::PARAM_STR);
+        $stmt->bindValue(':article_text', $article->getArticleText(), PDO::PARAM_STR);
+        $stmt->bindValue(':status', $article->getArticleText(), PDO::PARAM_INT);
+        $stmt->execute();
+        return true;
+    }
+
     public function updateArticle($form)
     {
-        $stmt = $this->pdo->prepare("UPDATE `articles` SET `article_name`= :article_name,
-                                    `short_description`= :short_description, `article_text`= :article_text,
+        $stmt = $this->pdo->prepare("UPDATE `articles` SET `article_title`= :article_title,
+                                    `article_description`= :article_description, `article_text`= :article_text,
                                     `status`= :status WHERE `article_id` = :article_id");
-        $stmt->bindParam(':article_name', $form['article_name'], PDO::PARAM_STR);
-        $stmt->bindParam(':short_description', $form['short_description'], PDO::PARAM_STR);
+        $stmt->bindParam(':article_title', $form['article_name'], PDO::PARAM_STR);
+        $stmt->bindParam(':article_description', $form['article_description'], PDO::PARAM_STR);
         $stmt->bindParam(':article_text', $form['article_text'], PDO::PARAM_STR);
         $stmt->bindParam(':status', $form['publish_status'], PDO::PARAM_INT);
         $stmt->bindParam(':article_id', $form['article_id'], PDO::PARAM_INT);

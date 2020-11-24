@@ -5,22 +5,14 @@
         <?php endforeach;?>
     </ul>
 <?php endif;?>
-<form action="/cabinet/updatePost" method="post">
-    <div class="form-group">
-        <label for="article_id">Id статті</label>
-        <input type="text" name="article_id" class="form-control" id="article_id" value="<?= $article['article_id'];?>" readonly>
-    </div>
-    <div class="form-group">
-        <label for="user_id">Id користувача</label>
-        <input type="text" class="form-control" id="user_id" value="<?= $article['user_id'];?>" readonly>
-    </div>
+<form action="/cabinet/updateArticle" method="post">
     <div class="form-group">
         <label for="article_name">Назва статті</label>
-        <textarea class="form-control" name="article_name" id="article_name" rows="4" style="resize: none"><?= $article['article_name'];?></textarea>
+        <textarea class="form-control" name="article_name" id="article_name" rows="4" style="resize: none"><?= $article['article_title'];?></textarea>
     </div>
     <div class="form-group">
         <label for="short_description">Короткий опис</label>
-        <input type="text" name="short_description" class="form-control" id="short_description" value="<?= $article['short_description'];?>">
+        <input type="text" name="short_description" class="form-control" id="short_description" value="<?= $article['article_description'];?>">
     </div>
     <div class="form-group">
         <label for="article_text">Текст статті</label>

@@ -14,7 +14,8 @@ return [
     new Route('/cabinet/page/:page', 'cabinet', 'actionIndex'),
     new Route('/article/:id', 'main', 'actionArticleView'),
 
+    new Route('/cabinet/createArticle', 'cabinet', 'actionCreateArticle'),
     new Route('/cabinet/deletePost/:id', 'cabinet', 'deletePost'),
     new Route('/cabinet/editPost/:id', 'cabinet', 'editPost'),
-    new Route('/cabinet/updatePost', 'cabinet', 'updatePost'),
+    new Route('/cabinet/updateArticle', 'cabinet', 'updatePost'),
 ];

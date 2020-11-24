@@ -10,7 +10,7 @@
 
 								<header class="entry-header">
 
-									<h2 class="entry-title" itemprop="headline"><?= $article['article_name'];?></h2>
+									<h2 class="entry-title" itemprop="headline"><?= $article['article_title'];?></h2>
 
 									<div class="entry-meta">
 

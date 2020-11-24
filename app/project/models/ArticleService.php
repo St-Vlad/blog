@@ -2,6 +2,7 @@
 
 namespace App\Project\Models;
 
+use App\Project\Utils\IdGenerator;
 use App\Project\Utils\Paginator;
 
 class ArticleService
@@ -29,6 +30,18 @@ class ArticleService
         return [$articles, $pageCount];
     }
 
+    public function createArticle(array $form)
+    {
+        $form = $this->checkStatus($form);
+        $article = new Article(IdGenerator::generateId(),
+                               $_SESSION['user_id'],
+                               $form['article_title'],
+                               $form['article_description'],
+                               $form['article_text'],
+                               $form['status']);
+        $this->articlesDAO->createArticle($article);
+    }
+
     public function getArticle($articleId)
     {
         return $this->articlesDAO->getArticleById($articleId);
@@ -46,6 +59,12 @@ class ArticleService
 
     public function updateArticle(array $form)
     {
+        $form = $this->checkStatus($form);
+        return $this->articlesDAO->updateArticle($form);
+    }
+
+    private function checkStatus($form)
+    {
         if (isset($form['publish_status']))
         {
             $form['publish_status'] = 1;
@@ -53,6 +72,6 @@ class ArticleService
         else{
             $form['publish_status'] = 0;
         }
-        return $this->articlesDAO->updateArticle($form);
+        return $form;
     }
 }

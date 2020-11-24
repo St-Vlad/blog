@@ -10,10 +10,12 @@ class CabinetController extends BaseController
 {
     private $service;
     private $errors;
+    private $articleForm;
 
     public function __construct()
     {
         $this->service = new ArticleService();
+        $this->articleForm = new ArticleFormValidator();
     }
 
     public function actionIndex($params)
@@ -22,6 +24,30 @@ class CabinetController extends BaseController
             [$articles, $pageCount] = $this->service->getAllUserArticles($params, $_SESSION['user_id']);
             return $this->render('cabinet/index', ['articles' => $articles,
                                                         'pageCount'=>$pageCount]);
+        }
+        else{
+            header("Location: /");
+        }
+    }
+
+    public function actionCreateArticle()
+    {
+        if (isset($_SESSION['user_id']))
+        {
+            if (isset($_POST['submit']))
+            {
+                $form = FormCleaner::purify($_POST);
+                $this->articleForm->load($form);
+                if (!$this->articleForm->isValid())
+                {
+                    $this->errors = $this->articleForm->getErrors();
+                }
+                else{
+                    $this->service->createArticle($form);
+                    header("Location: /cabinet");
+                }
+            }
+            return $this->render('cabinet/createArticle', ['errors' => $this->errors]);
         }
         else{
             header("Location: /");

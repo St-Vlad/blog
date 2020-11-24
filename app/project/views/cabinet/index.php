@@ -1,7 +1,7 @@
 <?php foreach ($articles as $article):?>
 <article class="post summary hentry" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
     <header class="entry-header">
-        <h2 class="entry-title" itemprop="headline"><?= $article['article_name'];?></h2>
+        <h2 class="entry-title" itemprop="headline"><?= $article['article_title'];?></h2>
         <span class="post-date">
                 <i class="fa fa-clock-o fa-fw"></i>
             <span class="created"><?= $article['creation_date'];?></span>
@@ -29,7 +29,7 @@
 
     </header> <!-- .entry-header -->
     <div class="entry-summary" itemprop="articleBody">
-        <p><?= $article['short_description'];?></p>
+        <p><?= $article['article_description'];?></p>
         <a class="more button" href="/article/<?= $article['article_id'];?>">Детальніше</a>
     <hr>
     </div> <!-- .entry-summary -->

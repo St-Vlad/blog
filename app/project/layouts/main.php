@@ -34,7 +34,7 @@
                                 <a href="/cabinet" title="Особостий кабінет" itemprop="name"><?= $_SESSION['username'];?></a>
                             </li>
                             <li class="menu" itemprop="url">
-                                <a href="/cabinet/create" title="Створити статтю" itemprop="name">Створити статтю</a>
+                                <a href="/cabinet/createArticle" title="Створити статтю" itemprop="name">Створити статтю</a>
                             </li>
                             <li class="menu" itemprop="url">
                                 <a href="/logout" title="Вийти" itemprop="name">Вийти</a>

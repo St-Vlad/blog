@@ -1,0 +1,19 @@
+{
+  "autoload": {
+    "psr-4": {
+      "App\\Core\\": "app/core/",
+      "App\\Project\\Controllers\\": "app/project/controllers/",
+      "App\\Project\\Models\\": "app/project/models/",
+      "App\\Project\\Utils\\": "app/project/utils/",
+      "App\\Core\\Db\\": "app/core/db/",
+      "App\\Project\\Models\\DAO\\": "app/project/models/dao/",
+      "App\\Project\\Models\\Forms\\": "app/project/models/forms/",
+      "App\\Project\\Models\\Services\\": "app/project/models/services/"
+    }
+  },
+  "require": {
+    "ext-pdo": "*",
+    "ext-dom": "*",
+    "ext-iconv": "*"
+  }
+}

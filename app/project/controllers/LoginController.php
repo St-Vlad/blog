@@ -2,8 +2,8 @@
 
 namespace App\Project\Controllers;
 
-use App\Project\Models\LoginFormValidator;
-use App\Project\Models\UserService;
+use App\Project\Models\Forms\LoginForm;
+use App\Project\Models\Services\UserService;
 use App\Project\Utils\FormCleaner;
 
 class LoginController extends BaseController
@@ -18,7 +18,7 @@ class LoginController extends BaseController
 
     public function actionLogin()
     {
-        $loginForm = new LoginFormValidator();
+        $loginForm = new LoginForm();
         if (isset($_POST['submit']))
         {
             $form = FormCleaner::purify($_POST);

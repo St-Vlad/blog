@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Project\Models;
+namespace App\Project\Models\Services;
 
-use App\Project\Utils\FormCleaner;
+use App\Project\Models\DAO\UserDAO;
+use App\Project\Models\User;
 use App\Project\Utils\Hasher;
 use App\Project\Utils\IdGenerator;
 

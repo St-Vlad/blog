@@ -2,8 +2,6 @@
 
 namespace App\Project\Models;
 
-use App\Project\Utils\Hasher;
-use App\Project\Utils\IdGenerator;
 
 class User
 {

@@ -1,17 +1,23 @@
 <?php
 
 
-namespace App\Project\Models;
+namespace App\Project\Models\Forms;
 
 
 use App\Project\Utils\CSRFGenerator;
 
-class ArticleFormValidator extends FormModel
+class ArticleForm extends FormModel
 {
     use CSRFChecker;
 
     private $data;
     private $token;
+
+    private $fields = [
+        'article_title' => 'Назва статті',
+        'article_description' => 'Короткий опис статті',
+        'article_text' => 'Текст статті',
+    ];
 
     public function __construct()
     {
@@ -49,8 +55,8 @@ class ArticleFormValidator extends FormModel
         {
             if (empty($field))
             {
-                $this->addError($key,
-                    "Поле $key не може бути пустим");
+                $this->addError('empty' . $key,
+                    "Поле {$this->fields[$key]} не може бути пустим");
             }
         }
     }

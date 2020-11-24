@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Project\Models;
+namespace App\Project\Models\Forms;
 
 abstract class FormModel
 {

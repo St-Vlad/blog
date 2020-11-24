@@ -22,7 +22,7 @@
         <textarea class="form-control" name="article_text" id="article_text" rows="10" style="resize: none"></textarea>
     </div>
     <div class="form-check">
-        <input type="checkbox" name="publish_status" class="form-check-input" id="exampleCheck1">
+        <input type="checkbox" name="status" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Опублікована</label>
     </div>
     <input type="submit" name="submit" class="btn btn-primary" value="Змінити статтю"/>

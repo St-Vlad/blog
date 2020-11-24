@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Project\Controllers;
-use App\Project\Models\RegistrationFormValidator;
-use App\Project\Models\UserService;
+use App\Project\Models\Forms\RegistrationForm;
+use App\Project\Models\Services\UserService;
 use App\Project\Utils\FormCleaner;
 
 class RegistrationController extends BaseController
@@ -17,7 +17,7 @@ class RegistrationController extends BaseController
 
     public function actionRegister()
     {
-        $registerForm = new RegistrationFormValidator();
+        $registerForm = new RegistrationForm();
         if (isset($_POST['submit']))
         {
             $form = FormCleaner::purify($_POST);

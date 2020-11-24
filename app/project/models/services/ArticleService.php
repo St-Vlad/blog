@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Project\Models;
+namespace App\Project\Models\Services;
 
+use App\Project\Models\Article;
+use App\Project\Models\DAO\ArticlesDAO;
 use App\Project\Utils\IdGenerator;
 use App\Project\Utils\Paginator;
 
@@ -65,12 +67,12 @@ class ArticleService
 
     private function checkStatus($form)
     {
-        if (isset($form['publish_status']))
+        if (isset($form['status']))
         {
-            $form['publish_status'] = 1;
+            $form['status'] = 1;
         }
         else{
-            $form['publish_status'] = 0;
+            $form['status'] = 0;
         }
         return $form;
     }

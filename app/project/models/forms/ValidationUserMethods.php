@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Project\Models;
+namespace App\Project\Models\Forms;
 
 trait ValidationUserMethods
 {
@@ -10,8 +10,8 @@ trait ValidationUserMethods
         {
             if (empty($field))
             {
-                $this->addError($key,
-                    "Поле $key не може бути пустим");
+                $this->addError('empty' . $key,
+                    "Поле {$this->fields[$key]} не може бути пустим");
             }
         }
     }

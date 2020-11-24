@@ -2,7 +2,7 @@
 
 namespace App\Project\Controllers;
 
-use App\Project\Models\ArticleService;
+use App\Project\Models\Services\ArticleService;
 
 class MainController extends BaseController
 {

@@ -2,7 +2,7 @@
 
 namespace App\Project\Utils;
 
-use App\Project\Models\ArticlesDAO;
+use App\Project\Models\DAO\ArticlesDAO;
 
 class Paginator
 {

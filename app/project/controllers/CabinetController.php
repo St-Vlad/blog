@@ -2,8 +2,8 @@
 
 namespace App\Project\Controllers;
 
-use App\Project\Models\ArticleFormValidator;
-use App\Project\Models\ArticleService;
+use App\Project\Models\Services\ArticleService;
+use App\Project\Models\Forms\ArticleForm;
 use App\Project\Utils\FormCleaner;
 
 class CabinetController extends BaseController
@@ -32,7 +32,7 @@ class CabinetController extends BaseController
     {
         if (isset($_SESSION['user_id']))
         {
-            $articleForm = new ArticleFormValidator();
+            $articleForm = new ArticleForm();
             if (isset($_POST['submit']))
             {
                 $form = FormCleaner::purify($_POST);
@@ -53,7 +53,7 @@ class CabinetController extends BaseController
         }
     }
 
-    public function deletePost($params)
+    public function actionDeleteArticle($params)
     {
         if (isset($_SESSION['user_id'])) {
             if($this->service->deletePost($params['id'])){
@@ -65,7 +65,7 @@ class CabinetController extends BaseController
         }
     }
 
-    public function editPost($params)
+    public function actionEditArticle($params)
     {
         if (isset($_SESSION['user_id'])) {
             $article = $this->service->editPost($params['id']);
@@ -79,7 +79,7 @@ class CabinetController extends BaseController
     public function actionUpdateArticle()
     {
         if (isset($_SESSION['user_id'])) {
-            $articleForm = new ArticleFormValidator();
+            $articleForm = new ArticleForm();
             if (isset($_POST['submit']))
             {
                 $form = FormCleaner::purify($_POST);

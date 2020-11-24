@@ -6,7 +6,7 @@
     </ul>
 <?php endif;?>
 
-<form action="/registration" method="post">
+<form action="/register" method="post">
     <div class="form-group">
         <input type="hidden" name="CSRFtoken" class="form-control" id="secret" value="<?php echo $_SESSION['CSRFtoken'];?>">
     </div>

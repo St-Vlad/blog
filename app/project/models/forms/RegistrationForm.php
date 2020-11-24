@@ -1,15 +1,23 @@
 <?php
 
-namespace App\Project\Models;
+namespace App\Project\Models\Forms;
 
+use App\Project\Models\DAO\ValidationDAO;
 use App\Project\Utils\CSRFGenerator;
 
-class RegistrationFormValidator extends FormModel
+class RegistrationForm extends FormModel
 {
     use ValidationUserMethods;
 
     private $data;
     private $token;
+
+    private $fields = [
+        'username' => 'Ім\'я корисувача',
+        'email' => 'Електронна адреса',
+        'password' => 'Пароль',
+        'repeat-password' => 'Повтор паролю',
+    ];
 
     public function __construct()
     {
@@ -56,7 +64,7 @@ class RegistrationFormValidator extends FormModel
     {
         if (!empty($email))
         {
-            $existingEmail = (new userDAO)->getExistingEmail($email);
+            $existingEmail = (new ValidationDAO())->getExistingEmail($email);
             if (!empty($existingEmail))
             {
                 if ($email === $existingEmail['email'])

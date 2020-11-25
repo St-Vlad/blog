@@ -25,5 +25,5 @@
         <input type="checkbox" name="status" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Опублікована</label>
     </div>
-    <input type="submit" name="submit" class="btn btn-primary" value="Змінити статтю"/>
+    <input type="submit" name="submit" class="btn btn-primary" value="Створити статтю"/>
 </form>

@@ -216,7 +216,7 @@ class ArticlesDAO extends DBConnection
         );
         $stmt->bindValue(
             ':status',
-            $form['publish_status'],
+            $form['status'],
             PDO::PARAM_INT
         );
         $stmt->bindValue(

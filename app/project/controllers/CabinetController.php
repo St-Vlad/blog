@@ -13,7 +13,7 @@ class CabinetController extends BaseController
 
     public function __construct()
     {
-        if (isset($_SESSION['user_id'])) {
+        if (!isset($_SESSION['user_id'])) {
             header("Location: /login");
         }
         $this->service = new ArticleService();
@@ -67,18 +67,10 @@ class CabinetController extends BaseController
         $this->title = 'Редагування статті';
 
         $article = $this->service->editPost($params['id']);
-        return $this->render(
-            'cabinet/editPost',
-            ['article' => $article]
-        );
-    }
 
-    public function actionUpdateArticle()
-    {
         $articleForm = new ArticleForm();
         if (isset($_POST['submit'])) {
             $form = FormCleaner::purify($_POST);
-
             $articleForm->load($form);
             if (!$articleForm->isValid()) {
                 $this->errors = $articleForm->getErrors();
@@ -87,9 +79,9 @@ class CabinetController extends BaseController
                 header("Location: /cabinet");
             }
         }
-        $this->render(
-            'cabinet/editPost',
-            ['errors' => $this->errors]
+        return $this->render(
+            'cabinet/editArticle',
+            ['article' => $article, 'errors' => $this->errors]
         );
     }
 }

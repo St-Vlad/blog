@@ -22,11 +22,11 @@
             </span>
                     <span>
                 <i class="fa fa-pencil" aria-hidden="true"></i>
-                <a href="/cabinet/editPost/<?php echo $article['article_id'];?>">edit</a>
+                <a href="/cabinet/editArticle/<?php echo $article['article_id'];?>">edit</a>
             </span>
                     <span>
                 <i class="fa fa-trash" aria-hidden="true"></i>
-                <a href="/cabinet/deletePost/<?php echo $article['article_id'];?>">delete</a>
+                <a href="/cabinet/deleteArticle/<?php echo $article['article_id'];?>">delete</a>
             </span>
 
                 </div> <!-- .entry-meta -->

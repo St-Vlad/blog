@@ -13,25 +13,29 @@ class RegistrationController extends BaseController
     public function __construct()
     {
         $this->userService = new UserService();
+        if (isset($_SESSION['user_id'])) {
+            header("Location: /");
+        }
     }
 
     public function actionRegister()
     {
         $this->title = 'Реєстрація';
-        $registerForm = new RegistrationForm();
-        if (isset($_POST['submit']))
-        {
-            $form = FormCleaner::purify($_POST);
 
+        $registerForm = new RegistrationForm();
+        if (isset($_POST['submit'])) {
+            $form = FormCleaner::purify($_POST);
             $registerForm->load($form);
             if (!$registerForm->isValid()) {
                 $this->errors = $registerForm->getErrors();
-            }
-            else{
+            } else {
                 $this->userService->registerUser($form);
                 header("Location: /");
             }
         }
-        return $this->render('user/registration', ['errors' => $this->errors]);
+        return $this->render(
+            'user/registration',
+            ['errors' => $this->errors]
+        );
     }
 }

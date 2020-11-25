@@ -6,7 +6,6 @@ use App\Project\Models\Services\ArticleService;
 
 class MainController extends BaseController
 {
-
     private $service;
 
     public function __construct()
@@ -17,15 +16,22 @@ class MainController extends BaseController
     public function actionIndex($params)
     {
         $this->title = "Головна";
+
         [$articles, $pageCount] = $this->service->getAllArticles($params);
-        return $this->render('index', ['articles' => $articles,
-                                            'pageCount'=>$pageCount]);
+        return $this->render(
+            'index',
+            ['articles' => $articles, 'pageCount'=>$pageCount]
+        );
     }
 
     public function actionArticleView($params)
     {
         $this->title = "Перегляд статті";
+
         $article = $this->service->getArticle($params['id']);
-        return $this->render('article', ['article' => $article]);
+        return $this->render(
+            'article',
+            ['article' => $article]
+        );
     }
 }

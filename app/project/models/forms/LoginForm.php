@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Project\Models\Forms;
 
 use App\Project\Models\DAO\ValidationDAO;
@@ -29,8 +28,7 @@ class LoginForm extends FormModel
 
     public function load($data)
     {
-        if (isset($data))
-        {
+        if (isset($data)) {
             $this->data = $data;
         }
     }
@@ -44,8 +42,7 @@ class LoginForm extends FormModel
         $this->checkPasswordLength($this->data['password']);
         $this->checkIsUserRegistered($this->data['email'], $this->data['password']);
 
-        if (!empty($this->errors))
-        {
+        if (!empty($this->errors)) {
             return false;
         }
         return true;
@@ -56,8 +53,7 @@ class LoginForm extends FormModel
         $data = (new ValidationDAO())->checkIsUserRegistered($email);
         if (!$data) {
             $this->addError('userNotExist', "Такого користувача не існує");
-        }
-        else{
+        } else {
             if (password_verify($password, $data['password_hash']) && !empty($data['email'])) {
                 return true;
             } else {

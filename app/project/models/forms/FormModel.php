@@ -6,11 +6,13 @@ abstract class FormModel
 {
     protected $errors = [];
 
-    public function addError($attribute, $error) {
+    public function addError($attribute, $error)
+    {
         $this->errors[$attribute] = $error;
     }
 
-    public function getErrors() {
+    public function getErrors()
+    {
         return $this->errors;
     }
 

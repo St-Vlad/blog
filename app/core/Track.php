@@ -38,6 +38,4 @@ class Track
     {
         return $this->params;
     }
-
-
 }

@@ -23,14 +23,17 @@ class Paginator
     {
         $articles = [];
         $pageShift = $this->getPageShift();
-        if (!is_null($this->userId))
-        {
-            $articles = $this->articlesDAO
-                ->getAllUserArticles($pageShift, $this->pageLimit, $this->userId);
-        }
-        else{
-            $articles = $this->articlesDAO
-                ->getAllArticles($pageShift, $this->pageLimit);
+        if (!is_null($this->userId)) {
+            $articles = $this->articlesDAO->getAllUserArticles(
+                $pageShift,
+                $this->pageLimit,
+                $this->userId
+            );
+        } else {
+            $articles = $this->articlesDAO->getAllArticles(
+                $pageShift,
+                $this->pageLimit
+            );
         }
         return $articles;
     }
@@ -38,10 +41,9 @@ class Paginator
     public function getPageCount()
     {
         $totalCount = 0;
-        if (!is_null($this->userId)){
+        if (!is_null($this->userId)) {
             $totalCount = $this->articlesDAO->getUserArticlesCount($this->userId);
-        }
-        else{
+        } else {
             $totalCount = $this->articlesDAO->getArticlesCount();
         }
         return ceil($totalCount / $this->pageLimit);
@@ -54,11 +56,9 @@ class Paginator
 
     public function getPageNumber($params)
     {
-        if (!isset($params['page']))
-        {
+        if (!isset($params['page'])) {
             return $pageNumber = 1;
-        }
-        else{
+        } else {
             return $pageNumber = abs(intval($params['page']));
         }
     }

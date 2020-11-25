@@ -17,10 +17,12 @@ class UserService
 
     public function registerUser($form)
     {
-        $user = new User(IdGenerator::generateId(),
-                         $form['username'],
-                         $form['email'],
-                         Hasher::getHash($form['password']));
+        $user = new User(
+            IdGenerator::generateId(),
+            $form['username'],
+            $form['email'],
+            Hasher::getHash($form['password'])
+        );
         $this->userDAO->create($user);
         $this->setUserInSession($user->getId(), $user->getUsername());
     }

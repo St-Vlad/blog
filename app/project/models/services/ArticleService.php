@@ -35,12 +35,14 @@ class ArticleService
     public function createArticle(array $form)
     {
         $form = $this->checkStatus($form);
-        $article = new Article(IdGenerator::generateId(),
-                               $_SESSION['user_id'],
-                               $form['article_title'],
-                               $form['article_description'],
-                               $form['article_text'],
-                               $form['status']);
+        $article = new Article(
+            IdGenerator::generateId(),
+            $_SESSION['user_id'],
+            $form['article_title'],
+            $form['article_description'],
+            $form['article_text'],
+            $form['status']
+        );
         $this->articlesDAO->createArticle($article);
     }
 
@@ -67,11 +69,9 @@ class ArticleService
 
     private function checkStatus($form)
     {
-        if (isset($form['status']))
-        {
+        if (isset($form['status'])) {
             $form['status'] = 1;
-        }
-        else{
+        } else {
             $form['status'] = 0;
         }
         return $form;

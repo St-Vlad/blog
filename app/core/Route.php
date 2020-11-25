@@ -38,6 +38,4 @@ class Route
     {
         return $this->action;
     }
-
-
 }

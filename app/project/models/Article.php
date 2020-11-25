@@ -18,8 +18,7 @@ class Article
         $article_description,
         $article_text,
         $status
-    )
-    {
+    ) {
         $this->article_id = $article_id;
         $this->user_id = $user_id;
         $this->article_title = $article_title;

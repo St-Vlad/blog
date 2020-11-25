@@ -14,25 +14,30 @@ class LoginController extends BaseController
     public function __construct()
     {
         $this->userService = new UserService();
+        if (isset($_SESSION['user_id'])) {
+            header("Location: /");
+        }
     }
 
     public function actionLogin()
     {
         $this->title = "Сторінка логіну";
+
         $loginForm = new LoginForm();
-        if (isset($_POST['submit']))
-        {
+        if (isset($_POST['submit'])) {
             $form = FormCleaner::purify($_POST);
             $loginForm->load($form);
             if (!$loginForm->isValid()) {
                 $this->errors = $loginForm->getErrors();
-            }
-            else{
+            } else {
                 $this->userService->loginUser($form);
                 header("Location: /");
             }
         }
-        return $this->render('user/login', ['errors' => $this->errors]);
+        return $this->render(
+            'user/login',
+            ['errors' => $this->errors]
+        );
     }
 
     public function actionLogout()

@@ -29,8 +29,7 @@ class RegistrationForm extends FormModel
 
     public function load($data)
     {
-        if (isset($data))
-        {
+        if (isset($data)) {
             $this->data = $data;
         }
     }
@@ -42,11 +41,12 @@ class RegistrationForm extends FormModel
         $this->checkEmailMask($this->data['email']);
         $this->checkEmailExistence($this->data['email']);
         $this->checkPasswordLength($this->data['password']);
-        $this->checkPasswordSameness($this->data['password'],
-                                     $this->data['repeat-password']);
+        $this->checkPasswordSameness(
+            $this->data['password'],
+            $this->data['repeat-password']
+        );
 
-        if (!empty($this->errors))
-        {
+        if (!empty($this->errors)) {
             return false;
         }
         return true;
@@ -54,24 +54,22 @@ class RegistrationForm extends FormModel
 
     private function checkPasswordSameness($password, $repeatPassword)
     {
-        if ($password !== $repeatPassword)
-        {
+        if ($password !== $repeatPassword) {
             $this->addError("differentPasswords",
                 "Паролі повинні співпадати");
         }
     }
 
-
     private function checkEmailExistence($email)
     {
-        if (!empty($email))
-        {
+        if (!empty($email)) {
             $existingEmail = (new ValidationDAO())->getExistingEmail($email);
-            if (!empty($existingEmail))
-            {
-                if ($email === $existingEmail['email'])
-                {
-                    $this->addError("emailExist", "Така електронна пошта вже зареєстрована");
+            if (!empty($existingEmail)) {
+                if ($email === $existingEmail['email']) {
+                    $this->addError(
+                        "emailExist",
+                        "Така електронна пошта вже зареєстрована"
+                    );
                 }
             }
         }

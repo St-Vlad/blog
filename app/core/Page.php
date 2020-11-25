@@ -48,5 +48,4 @@ class Page
     {
         return $this->data;
     }
-
 }

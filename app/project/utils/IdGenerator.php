@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Project\Utils;
-
 
 class IdGenerator
 {

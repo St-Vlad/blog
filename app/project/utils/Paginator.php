@@ -11,7 +11,7 @@ class Paginator
     private $userId;
     private $articlesDAO;
 
-    public function __construct(array $params, $pageLimit, $userId = null)
+    public function __construct($params, $pageLimit, $userId = null)
     {
         $this->pageNumber = $this->getPageNumber($params);
         $this->pageLimit = $pageLimit;

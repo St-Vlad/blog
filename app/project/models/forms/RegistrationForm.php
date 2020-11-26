@@ -19,14 +19,6 @@ class RegistrationForm extends FormModel
         'repeat-password' => 'Повтор паролю',
     ];
 
-    public function __construct()
-    {
-        if (!isset($_SESSION['CSRFtoken'])) {
-            $this->token = new CSRFGenerator();
-            $_SESSION['CSRFtoken'] = $this->token->getCSRFtoken();
-        }
-    }
-
     public function load($data)
     {
         if (isset($data)) {

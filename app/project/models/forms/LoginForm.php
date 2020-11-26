@@ -3,7 +3,6 @@
 namespace App\Project\Models\Forms;
 
 use App\Project\Models\DAO\ValidationDAO;
-use App\Project\Utils\CSRFGenerator;
 
 class LoginForm extends FormModel
 {
@@ -17,14 +16,6 @@ class LoginForm extends FormModel
         'email' => 'Ім\'я користувача',
         'password' => 'Пароль',
     ];
-
-    public function __construct()
-    {
-        if (!isset($_SESSION['CSRFtoken'])) {
-            $this->token = new CSRFGenerator();
-            $_SESSION['CSRFtoken'] = $this->token->getCSRFtoken();
-        }
-    }
 
     public function load($data)
     {

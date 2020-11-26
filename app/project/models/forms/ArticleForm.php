@@ -1,10 +1,6 @@
 <?php
 
-
 namespace App\Project\Models\Forms;
-
-
-use App\Project\Utils\CSRFGenerator;
 
 class ArticleForm extends FormModel
 {
@@ -18,14 +14,6 @@ class ArticleForm extends FormModel
         'article_description' => 'Короткий опис статті',
         'article_text' => 'Текст статті',
     ];
-
-    public function __construct()
-    {
-        if (!isset($_SESSION['CSRFtoken'])) {
-            $this->token = new CSRFGenerator();
-            $_SESSION['CSRFtoken'] = $this->token->getCSRFtoken();
-        }
-    }
 
     public function load($data)
     {

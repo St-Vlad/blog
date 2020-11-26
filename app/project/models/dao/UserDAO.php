@@ -3,7 +3,8 @@
 namespace App\Project\Models\DAO;
 
 use App\Core\Db\DBConnection;
-use App\Project\Models\User;
+use App\Project\Models\DTO\User\UserLoginDTO;
+use App\Project\Models\DTO\User\UserRegisterDTO;
 use PDO;
 
 class UserDAO extends DBConnection
@@ -14,7 +15,7 @@ class UserDAO extends DBConnection
         $this->pdo = $this->getDb();
     }
 
-    public function create(User $user)
+    public function create(UserRegisterDTO $user)
     {
         $sql = "INSERT INTO `users`(
                     `user_id`, 
@@ -48,9 +49,10 @@ class UserDAO extends DBConnection
                 FROM 
                     `users` 
                 WHERE 
-                    `email` = :email";
+                    `email` = :email
+                LIMIT 1";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([':email' => $email]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchObject(UserLoginDTO::class);
     }
 }

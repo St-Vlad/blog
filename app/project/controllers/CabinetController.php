@@ -2,9 +2,13 @@
 
 namespace App\Project\Controllers;
 
+use App\Project\Models\DTO\Article\CreateArticleDTO;
+use App\Project\Models\DTO\Article\DeleteArticleDTO;
+use App\Project\Models\DTO\Article\UpdateArticleDTO;
 use App\Project\Models\Services\ArticleService;
 use App\Project\Models\Forms\ArticleForm;
 use App\Project\Utils\FormCleaner;
+use App\Project\Utils\RequestParamChecker;
 
 class CabinetController extends BaseController
 {
@@ -13,16 +17,23 @@ class CabinetController extends BaseController
 
     public function __construct()
     {
+        parent::__construct();
+        $this->service = new ArticleService();
+
         if (!isset($_SESSION['user_id'])) {
             header("Location: /login");
         }
-        $this->service = new ArticleService();
     }
 
     public function actionIndex($params)
     {
-        $this->title = 'Ваші статті';
+        if (isset($params['page'])){
+            if (!RequestParamChecker::isValid($params['page'])) {
+                return $this->render('not_found');
+            }
+        }
 
+        $this->title = 'Ваші статті';
         [$articles, $pageCount] = $this->service->getAllUserArticles(
             $params,
             $_SESSION['user_id']
@@ -41,11 +52,13 @@ class CabinetController extends BaseController
         if (isset($_POST['submit']))
         {
             $form = FormCleaner::purify($_POST);
+
             $articleForm->load($form);
             if (!$articleForm->isValid()) {
                 $this->errors = $articleForm->getErrors();
             } else {
-                $this->service->createArticle($form);
+                $createArticleDTO = new CreateArticleDTO($form);
+                $this->service->createArticle($createArticleDTO);
                 header("Location: /cabinet");
             }
         }
@@ -57,7 +70,11 @@ class CabinetController extends BaseController
 
     public function actionDeleteArticle($params)
     {
-        if($this->service->deletePost($params['id'])) {
+        $deleteArticleDTO = new DeleteArticleDTO(
+            $params['id'],
+            $_SESSION['user_id']
+        );
+        if($this->service->deleteArticle($deleteArticleDTO)) {
             header("Location: /cabinet");
         }
     }
@@ -66,16 +83,21 @@ class CabinetController extends BaseController
     {
         $this->title = 'Редагування статті';
 
-        $article = $this->service->editPost($params['id']);
+        if (!RequestParamChecker::isValid($params['id'])) {
+            return $this->render('not_found');
+        }
 
+        $article = $this->service->getArticleByID($params['id']);
         $articleForm = new ArticleForm();
+
         if (isset($_POST['submit'])) {
             $form = FormCleaner::purify($_POST);
             $articleForm->load($form);
             if (!$articleForm->isValid()) {
                 $this->errors = $articleForm->getErrors();
             } else {
-                $this->service->updateArticle($form);
+                $articleDTO = new UpdateArticleDTO($form);
+                $this->service->updateArticle($articleDTO);
                 header("Location: /cabinet");
             }
         }

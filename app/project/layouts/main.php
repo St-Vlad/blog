@@ -18,7 +18,7 @@
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link media="all" type="text/css" href="<?php echo "/app/project/src/css/custom.css";?>" rel="stylesheet">
 </head>
-<body class="blog" itemscope itemtype="http://schema.org/Blog">
+<body class="blog" itemscope>
 
 <div id="masthead">
 
@@ -26,7 +26,7 @@
         <div class="container">
             <div class="row">
 
-                <nav id="main-menu" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                <nav id="main-menu" role="navigation" itemscope>
                     <ul class="horizontal-navigation">
                         <li class="menu-home" itemprop="url"><a href="/" title="Головна сторінка" itemprop="name">Головна</a></li>
                         <?php if(isset($_SESSION['user_id'])):?>

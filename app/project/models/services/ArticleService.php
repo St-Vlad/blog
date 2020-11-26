@@ -2,9 +2,10 @@
 
 namespace App\Project\Models\Services;
 
-use App\Project\Models\Article;
+use App\Project\Models\DTO\Article\CreateArticleDTO;
 use App\Project\Models\DAO\ArticlesDAO;
-use App\Project\Utils\IdGenerator;
+use App\Project\Models\DTO\Article\DeleteArticleDTO;
+use App\Project\Models\DTO\Article\UpdateArticleDTO;
 use App\Project\Utils\Paginator;
 
 class ArticleService
@@ -16,7 +17,7 @@ class ArticleService
         $this->articlesDAO = new ArticlesDAO();
     }
 
-    public function getAllArticles($params)
+    public function getAllArticles(array $params)
     {
         $paginator = new Paginator($params, 6);
         $articles = $paginator->getPaginationData();
@@ -24,7 +25,7 @@ class ArticleService
         return [$articles, $pageCount];
     }
 
-    public function getAllUserArticles($params, $userId)
+    public function getAllUserArticles(array $params, $userId)
     {
         $paginator = new Paginator($params, 6, $userId);
         $articles = $paginator->getPaginationData();
@@ -32,48 +33,23 @@ class ArticleService
         return [$articles, $pageCount];
     }
 
-    public function createArticle(array $form)
+    public function createArticle(CreateArticleDTO $createArticleDTO)
     {
-        $form = $this->checkStatus($form);
-        $article = new Article(
-            IdGenerator::generateId(),
-            $_SESSION['user_id'],
-            $form['article_title'],
-            $form['article_description'],
-            $form['article_text'],
-            $form['status']
-        );
-        $this->articlesDAO->createArticle($article);
+        $this->articlesDAO->createArticle($createArticleDTO);
     }
 
-    public function getArticle($articleId)
+    public function getArticleByID($articleId)
     {
         return $this->articlesDAO->getArticleById($articleId);
     }
 
-    public function deletePost($id)
+    public function deleteArticle(DeleteArticleDTO $deleteArticleDTO)
     {
-        return $this->articlesDAO->deleteArticleById($id);
+        return $this->articlesDAO->deleteArticleById($deleteArticleDTO);
     }
 
-    public function editPost($id)
+    public function updateArticle(UpdateArticleDTO $updateArticleDTO)
     {
-        return $this->articlesDAO->getArticleById($id);
-    }
-
-    public function updateArticle(array $form)
-    {
-        $form = $this->checkStatus($form);
-        $this->articlesDAO->updateArticle($form);
-    }
-
-    private function checkStatus($form)
-    {
-        if (isset($form['status'])) {
-            $form['status'] = 1;
-        } else {
-            $form['status'] = 0;
-        }
-        return $form;
+        $this->articlesDAO->updateArticle($updateArticleDTO);
     }
 }

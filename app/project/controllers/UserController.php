@@ -2,6 +2,7 @@
 
 namespace App\Project\Controllers;
 
+use App\Project\Models\DTO\User\UserRegisterDTO;
 use App\Project\Models\Forms\LoginForm;
 use App\Project\Models\Forms\RegistrationForm;
 use App\Project\Models\Services\UserService;
@@ -14,7 +15,9 @@ class UserController extends BaseController
 
     public function __construct()
     {
+        parent::__construct();
         $this->userService = new UserService();
+
         if (isset($_SESSION['user_id'])) {
             header("Location: /");
         }
@@ -31,7 +34,8 @@ class UserController extends BaseController
             if (!$registerForm->isValid()) {
                 $this->errors = $registerForm->getErrors();
             } else {
-                $this->userService->registerUser($form);
+                $user= new UserRegisterDTO($form);
+                $this->userService->registerUser($user);
                 header("Location: /");
             }
         }

@@ -13,17 +13,11 @@ class DeleteArticleDTO
         $this->userId = $userId;
     }
 
-    /**
-     * @return mixed
-     */
     public function getArticleId()
     {
         return $this->articleId;
     }
 
-    /**
-     * @return mixed
-     */
     public function getUserId()
     {
         return $this->userId;

@@ -1,13 +1,13 @@
 <?php if (!$article): ?>
     <p>Такої статті не існує</p>
 <?php else: ?>
-    <?php if(isset($errors)): ?>
-        <ul>
-            <?php foreach ($errors as $error):?>
-                <li><?= $error?></li>
-            <?php endforeach;?>
-        </ul>
-    <?php endif;?>
+<?php if(isset($errors)): ?>
+    <ul>
+        <?php foreach ($errors as $error):?>
+            <li><?= $error?></li>
+        <?php endforeach;?>
+    </ul>
+<?php endif;?>
     <form action="/cabinet/editArticle/<?= $article->getArticleId(); ?>" method="post">
         <div class="form-group">
             <input type="hidden" name="CSRFtoken" class="form-control" id="secret" value="<?php echo $_SESSION['CSRFtoken'];?>">

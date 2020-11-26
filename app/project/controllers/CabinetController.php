@@ -82,7 +82,6 @@ class CabinetController extends BaseController
     public function actionEditArticle($params)
     {
         $this->title = 'Редагування статті';
-
         if (!RequestParamChecker::isValid($params['id'])) {
             return $this->render('not_found');
         }

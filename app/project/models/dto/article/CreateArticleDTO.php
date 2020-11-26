@@ -2,13 +2,10 @@
 
 namespace App\Project\Models\DTO\Article;
 
-use App\Project\Models\DTO\Article\CheckArticleStatus;
 use App\Project\Utils\IdGenerator;
 
 class CreateArticleDTO
 {
-    use CheckArticleStatus;
-
     private $article_id;
     private $user_id;
     private $article_title;
@@ -16,13 +13,14 @@ class CreateArticleDTO
     private $article_text;
     private $status;
 
-    public function __construct($form) {
+    public function __construct($form)
+    {
         $this->article_id = IdGenerator::generateId();
         $this->user_id = $_SESSION['user_id'];
         $this->article_title = $form['article_title'];
         $this->article_description = $form['article_description'];
         $this->article_text = $form['article_text'];
-        $this->status = $this->setStatus($form['status']);
+        $this->status = isset($form['status']) ? 1 : 0;
     }
 
     public function getArticleId()

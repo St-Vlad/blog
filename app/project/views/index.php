@@ -1,8 +1,8 @@
 <?php if (empty($articles)):?>
     <h2>На цій сторінці пусто</h2>
 <?php else:?>
-    <?php foreach ($articles as $article):?>
-    <article class="post summary hentry" itemscope itemprop="blogPost"">
+<?php foreach ($articles as $article):?>
+    <article class="post summary hentry" itemscope itemprop="blogPost">
         <header class="entry-header">
             <h2 class="entry-title" itemprop="headline"><?= $article->getArticleTitle();?></h2>
             <div class="entry-meta">

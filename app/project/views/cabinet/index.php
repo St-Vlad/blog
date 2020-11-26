@@ -1,7 +1,7 @@
-<?php if (empty($articles)):?>
+<?php if (empty($articles)): ?>
     <h2>На цій сторінці пусто</h2>
-<?php else:?>
-    <?php foreach ($articles as $article):?>
+<?php else: ?>
+<?php foreach ($articles as $article):?>
         <article class="post summary hentry" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
             <header class="entry-header">
                 <h2 class="entry-title" itemprop="headline"><?= $article->getArticleTitle(); ?></h2>

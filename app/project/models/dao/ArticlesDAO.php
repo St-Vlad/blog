@@ -30,12 +30,11 @@ class ArticlesDAO extends DBConnection
                 WHERE 
                     `articles`.`user_id` = :user_id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(
-            ':user_id',
-            $userId,
-            PDO::PARAM_INT
+        $stmt->execute(
+            [
+                ':user_id' => $userId,
+            ]
         );
-        $stmt->execute();
         $count = $stmt->fetch(PDO::FETCH_ASSOC);
         return $count['COUNT(*)'];
     }
@@ -69,10 +68,10 @@ class ArticlesDAO extends DBConnection
                     `creation_date` 
                 DESC
                 LIMIT 
-                    :pageNumber, :pageLimit";
+                    :page_number, :page_limit";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':pageNumber', $pageNumber, PDO::PARAM_INT);
-        $stmt->bindValue(':pageLimit', $pageLimit, PDO::PARAM_INT);
+        $stmt->bindValue(':page_number', $pageNumber, PDO::PARAM_INT);
+        $stmt->bindValue(':page_limit', $pageLimit, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(
             PDO::FETCH_CLASS,
@@ -97,11 +96,11 @@ class ArticlesDAO extends DBConnection
                     `creation_date` 
                 DESC                                 
                 LIMIT 
-                    :pageNumber, :pageLimit";
+                    :page_number, :page_limit";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':pageNumber', $pageNumber, PDO::PARAM_INT);
-        $stmt->bindValue(':pageLimit', $pageLimit, PDO::PARAM_INT);
         $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->bindValue(':page_number', $pageNumber, PDO::PARAM_INT);
+        $stmt->bindValue(':page_limit', $pageLimit, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(
             PDO::FETCH_CLASS,
@@ -109,8 +108,6 @@ class ArticlesDAO extends DBConnection
         );
     }
 
-    // UserRegisterDTO MUST login into his origin account to delete article
-    // in the other hand, this will affect 0 rows
     public function deleteArticleById(DeleteArticleDTO $deleteArticleDTO)
     {
         $sql = "DELETE FROM 
@@ -118,16 +115,12 @@ class ArticlesDAO extends DBConnection
                 WHERE 
                     `article_id` = :article_id AND `user_id` = :user_id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(
-            ':article_id',
-            $deleteArticleDTO->getArticleId(),
-            PDO::PARAM_INT
+        return $stmt->execute(
+            [
+                ':article_id' => $deleteArticleDTO->getArticleId(),
+                ':user_id' => $deleteArticleDTO->getUserId(),
+            ]
         );
-        $stmt->bindValue(
-            ':user_id',
-            $deleteArticleDTO->getUserId(),
-            PDO::PARAM_INT);
-        return $stmt->execute();
     }
 
     public function getArticleById($id)
@@ -148,8 +141,7 @@ class ArticlesDAO extends DBConnection
                     `article_id` = :article_id
                 LIMIT 1";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':article_id', $id, PDO::PARAM_INT);
-        $stmt->execute();
+        $stmt->execute(array(':article_id' => $id));
         return $stmt->fetchObject(ViewSingleArticleDTO::class);
     }
 
@@ -174,37 +166,16 @@ class ArticlesDAO extends DBConnection
                     CURRENT_TIMESTAMP
                 )";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(
-            ':article_id',
-            $article->getArticleId(),
-            PDO::PARAM_INT
+        $stmt->execute(
+            [
+                ':article_id' => $article->getArticleId(),
+                ':user_id' => $article->getUserId(),
+                ':article_title' => $article->getArticleTitle(),
+                ':article_description' => $article->getArticleDescription(),
+                ':article_text' => $article->getArticleText(),
+                ':status' => $article->getStatus(),
+            ]
         );
-        $stmt->bindValue(
-            ':user_id',
-            $article->getUserId(),
-            PDO::PARAM_INT
-        );
-        $stmt->bindValue(
-            ':article_title',
-            $article->getArticleTitle(),
-            PDO::PARAM_STR
-        );
-        $stmt->bindValue(
-            ':article_description',
-            $article->getArticleDescription(),
-            PDO::PARAM_STR
-        );
-        $stmt->bindValue(
-            ':article_text',
-            $article->getArticleText(),
-            PDO::PARAM_STR
-        );
-        $stmt->bindValue(
-            ':status',
-            $article->getStatus(),
-            PDO::PARAM_INT
-        );
-        $stmt->execute();
         return true;
     }
 
@@ -220,32 +191,15 @@ class ArticlesDAO extends DBConnection
                 WHERE 
                     `article_id` = :article_id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(
-            ':article_title',
-            $updateArticleDTO->getArticleTitle(),
-            PDO::PARAM_STR
+        $stmt->execute(
+            [
+                ':article_title' => $updateArticleDTO->getArticleTitle(),
+                ':article_description' => $updateArticleDTO->getArticleDescription(),
+                ':article_text' => $updateArticleDTO->getArticleText(),
+                ':status' => $updateArticleDTO->getArticleStatus(),
+                ':article_id' => $updateArticleDTO->getArticleId(),
+            ]
         );
-        $stmt->bindValue(
-            ':article_description',
-            $updateArticleDTO->getArticleDescription(),
-            PDO::PARAM_STR
-        );
-        $stmt->bindValue(
-            ':article_text',
-            $updateArticleDTO->getArticleText(),
-            PDO::PARAM_STR
-        );
-        $stmt->bindValue(
-            ':status',
-            $updateArticleDTO->getArticleStatus(),
-            PDO::PARAM_INT
-        );
-        $stmt->bindValue(
-            ':article_id',
-            $updateArticleDTO->getArticleId(),
-            PDO::PARAM_INT
-        );
-        $stmt->execute();
         return true;
     }
 }

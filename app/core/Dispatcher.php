@@ -21,10 +21,12 @@ class Dispatcher
                     return new Page('main');
                 }
             } else {
-                echo "Method <b>{$track->getAction()}</b> not found $fullName."; die();
+                echo "Method <b>{$track->getAction()}</b> not found $fullName.";
+                die();
             }
         } catch (\Exception $error) {
-            echo $error->getMessage(); die();
+            echo $error->getMessage();
+            die();
         }
     }
 }

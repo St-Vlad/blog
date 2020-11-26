@@ -4,10 +4,13 @@ namespace App\Core;
 
 class View
 {
-    public function render(Page $page){
+    public function render(Page $page)
+    {
         return $this->renderLayout($page, $this->renderView($page));
     }
-    private function renderLayout(Page $page, $content) {
+
+    private function renderLayout(Page $page, $content)
+    {
         $layoutPath = $_SERVER['DOCUMENT_ROOT'] . "/app/project/layouts/{$page->getLayout()}.php";
         if (file_exists($layoutPath)) {
             ob_start();
@@ -19,7 +22,8 @@ class View
         }
     }
 
-    private function renderView(Page $page) {
+    private function renderView(Page $page)
+    {
         if (($page->getView())){
             $viewPath = $_SERVER['DOCUMENT_ROOT'] . "/app/project/views/{$page->getView()}.php";
             if(file_exists($viewPath)){

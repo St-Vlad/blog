@@ -1,10 +1,8 @@
 <?php
 
-
 namespace App\Project\Models\Forms;
 
 use App\Project\Models\DAO\ValidationDAO;
-use App\Project\Utils\CSRFGenerator;
 
 class LoginForm extends FormModel
 {
@@ -19,18 +17,9 @@ class LoginForm extends FormModel
         'password' => 'Пароль',
     ];
 
-    public function __construct()
-    {
-        if (!isset($_SESSION['CSRFtoken'])) {
-            $this->token = new CSRFGenerator();
-            $_SESSION['CSRFtoken'] = $this->token->getCSRFtoken();
-        }
-    }
-
     public function load($data)
     {
-        if (isset($data))
-        {
+        if (isset($data)) {
             $this->data = $data;
         }
     }
@@ -39,13 +28,11 @@ class LoginForm extends FormModel
     {
         $this->check_csrf($this->data);
         $this->checkNotEmpty($this->data);
-        $this->checkUsernameLength($this->data['username']);
         $this->checkEmailMask($this->data['email']);
         $this->checkPasswordLength($this->data['password']);
         $this->checkIsUserRegistered($this->data['email'], $this->data['password']);
 
-        if (!empty($this->errors))
-        {
+        if (!empty($this->errors)) {
             return false;
         }
         return true;
@@ -56,8 +43,7 @@ class LoginForm extends FormModel
         $data = (new ValidationDAO())->checkIsUserRegistered($email);
         if (!$data) {
             $this->addError('userNotExist', "Такого користувача не існує");
-        }
-        else{
+        } else {
             if (password_verify($password, $data['password_hash']) && !empty($data['email'])) {
                 return true;
             } else {

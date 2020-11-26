@@ -8,7 +8,10 @@
       "App\\Core\\Db\\": "app/core/db/",
       "App\\Project\\Models\\DAO\\": "app/project/models/dao/",
       "App\\Project\\Models\\Forms\\": "app/project/models/forms/",
-      "App\\Project\\Models\\Services\\": "app/project/models/services/"
+      "App\\Project\\Models\\Services\\": "app/project/models/services/",
+      "App\\Project\\Models\\DTO\\": "app/project/models/dto/",
+      "App\\Project\\Models\\DTO\\Article\\": "app/project/models/dto/article",
+      "App\\Project\\Models\\DTO\\User\\": "app/project/models/dto/user"
     }
   },
   "require": {
